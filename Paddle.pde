@@ -32,23 +32,16 @@ class Paddle {
   }
   
   void moveAI() {
-    if (pos.y+5 > pong.pos.y && isMovingDown) {
-      //mentokBawah=false;
-      isMovingUp = false; isMovingDown = false;
+    if (pong.pos.y >= pos.y+60 && pong.pos.y <= pos.y+65) {
       vel.y=0;
-    }
-    else if (pos.y+5 > pong.pos.y && !isMovingDown) {
-      mentokBawah = false;
-      isMovingUp = true; isMovingDown = false;
+      isMovingUp=isMovingDown=false;
+    } else if (pong.pos.y <= pos.y && !isMovingDown) { // If the ball is above the paddle then move the paddle UP
+      mentokAtas=false;
+      isMovingDown=true; isMovingUp=false;
       vel.y = -10;
-    }
-    else if (pos.y+100 < pong.pos.y && isMovingUp) {
-      //mentokAtas = false;
-      isMovingUp = isMovingDown = false;
-      vel.y = 0;
-    } else if (pos.y+100 < pong.pos.y && !isMovingUp) {
-      mentokAtas = false;
-      isMovingUp = false; isMovingDown = true;
+    } else if (pong.pos.y > pos.y+110 && !isMovingUp) { // If the ball is below the paddle then move the paddle DOWN
+      mentokBawah=false;
+      isMovingDown=false; isMovingUp=true;
       vel.y = 10;
     }
     
