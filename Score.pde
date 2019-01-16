@@ -6,6 +6,7 @@ class Score {
     
   }
   
+  // Display the scores on screen
   void display() {
     fill(255);
     textSize(60);
