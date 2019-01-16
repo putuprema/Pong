@@ -3,7 +3,7 @@ class Paddle {
   PVector vel;
   //PVector accel;
   
-  boolean mentokAtas=false, mentokBawah=false;
+  boolean mentokAtas=false, mentokBawah=false, isMovingUp=false, isMovingDown=false;
   
   Paddle(int x, int y) {
     pos = new PVector(x,y); 
@@ -32,12 +32,23 @@ class Paddle {
   }
   
   void moveAI() {
-    if (pos.y+20 > pong.pos.y) {
+    if (pos.y+5 > pong.pos.y && isMovingDown) {
+      //mentokBawah=false;
+      isMovingUp = false; isMovingDown = false;
+      vel.y=0;
+    }
+    else if (pos.y+5 > pong.pos.y && !isMovingDown) {
       mentokBawah = false;
+      isMovingUp = true; isMovingDown = false;
       vel.y = -10;
     }
-    else if (pos.y+20 < pong.pos.y) {
+    else if (pos.y+100 < pong.pos.y && isMovingUp) {
+      //mentokAtas = false;
+      isMovingUp = isMovingDown = false;
+      vel.y = 0;
+    } else if (pos.y+100 < pong.pos.y && !isMovingUp) {
       mentokAtas = false;
+      isMovingUp = false; isMovingDown = true;
       vel.y = 10;
     }
     
@@ -46,7 +57,7 @@ class Paddle {
   }
   
   void checkBoundary() {
-    if (pos.y <= 0) mentokAtas = true;
+    if (pos.y <= 1) mentokAtas = true;
     else if (pos.y >= height-90) mentokBawah = true;
   }
 }

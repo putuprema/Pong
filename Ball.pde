@@ -35,24 +35,25 @@ class Ball {
   }
   
   void checkCollisionPlayer() {
-    if ((pos.x-10 >= playerPaddle.pos.x && pos.x-10 <= playerPaddle.pos.x+15) && (pos.y >= playerPaddle.pos.y && pos.y <= playerPaddle.pos.y+100)) {
+    if ((pos.x >= playerPaddle.pos.x+15 && pos.x-10 <= playerPaddle.pos.x+17) && (pos.y >= playerPaddle.pos.y-10 && pos.y <= playerPaddle.pos.y+102)) {
       collisionPos = pos.y - playerPaddle.pos.y;
       bounceSpeed = setBounceSpeed();
       bounceAngle = map(collisionPos,0,100, PI/-4, PI/4);
       vel = PVector.fromAngle(bounceAngle);
       vel.setMag(bounceSpeed);
-    }  
+      //println("Player bounce zone");
+    } //else println("");
   }
   
   void checkCollisionEnemy() {
-    if ((pos.x+10 >= enemyPaddle.pos.x && pos.x+10 <= enemyPaddle.pos.x+15
-    ) && (pos.y >= enemyPaddle.pos.y && pos.y <= enemyPaddle.pos.y+100)) {
+    if ((pos.x+10 >= enemyPaddle.pos.x && pos.x <= enemyPaddle.pos.x) && (pos.y >= enemyPaddle.pos.y-10 && pos.y <= enemyPaddle.pos.y+102)) {
       collisionPos = pos.y - enemyPaddle.pos.y;
       bounceSpeed = setBounceSpeed();
       bounceAngle = map(collisionPos,0,100, PI/4, PI/-4);
       vel = PVector.fromAngle(bounceAngle);
       vel.setMag(bounceSpeed*-1);
-    }
+      //println("Enemy bounce zone");
+    } //else println("");
   }
   
   float setBounceSpeed() {
