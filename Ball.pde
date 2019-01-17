@@ -42,6 +42,7 @@ class Ball {
       collisionPos = pos.y - playerPaddle.pos.y;
       bounceSpeed = setBounceSpeed(); // Set bounce speed based on where the ball touches the paddle (Touching the edges of the paddle will bounce the ball at highest speed
       bounceAngle = map(collisionPos,0,100, PI/-4, PI/4); // Set bounce angle based on where the ball touches the paddle (from -45 to 45 degrees)
+      pos.x = playerPaddle.pos.x+32; // Teleport the ball to the side of the paddle to avoid the ball go beyond the paddle bug
       vel = PVector.fromAngle(bounceAngle); // Create velocity vector based on bounce angle.
       vel.setMag(bounceSpeed); // Limit the velocity so it doesn't go to fast.
       //println("Player bounce zone");
@@ -54,6 +55,7 @@ class Ball {
       collisionPos = pos.y - enemyPaddle.pos.y;
       bounceSpeed = setBounceSpeed(); // Set bounce speed based on where the ball touches the paddle (Touching the edges of the paddle will bounce the ball at highest speed
       bounceAngle = map(collisionPos,0,100, PI/4, PI/-4); // Set bounce angle based on where the ball touches the paddle (from 45 to -45 degrees)
+      pos.x = enemyPaddle.pos.x-16; // Teleport the ball to the side of the paddle to avoid the ball go beyond the paddle bug
       vel = PVector.fromAngle(bounceAngle); // Create velocity vector based on bounce angle.
       vel.setMag(bounceSpeed*-1); // Limit the velocity so it doesn't go to fast.
       //println("Enemy bounce zone");
