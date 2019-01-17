@@ -38,7 +38,7 @@ class Ball {
   
   void checkCollisionPlayer() {
     // If the ball touches the player paddle, bounce it on the opposite direction.
-    if ((pos.x >= playerPaddle.pos.x+15 && pos.x-10 <= playerPaddle.pos.x+17) && (pos.y >= playerPaddle.pos.y-10 && pos.y <= playerPaddle.pos.y+102)) {
+    if ((pos.x >= playerPaddle.pos.x+10 && pos.x-10 <= playerPaddle.pos.x+17) && (pos.y >= playerPaddle.pos.y-10 && pos.y <= playerPaddle.pos.y+102)) {
       collisionPos = pos.y - playerPaddle.pos.y;
       bounceSpeed = setBounceSpeed(); // Set bounce speed based on where the ball touches the paddle (Touching the edges of the paddle will bounce the ball at highest speed
       bounceAngle = map(collisionPos,0,100, PI/-4, PI/4); // Set bounce angle based on where the ball touches the paddle (from -45 to 45 degrees)
@@ -51,7 +51,7 @@ class Ball {
   
   void checkCollisionEnemy() {
     // If the ball touches the enemy paddle, bounce it on the opposite direction.
-    if ((pos.x+10 >= enemyPaddle.pos.x && pos.x <= enemyPaddle.pos.x) && (pos.y >= enemyPaddle.pos.y-10 && pos.y <= enemyPaddle.pos.y+102)) {
+    if ((pos.x+10 >= enemyPaddle.pos.x && pos.x <= enemyPaddle.pos.x+5) && (pos.y >= enemyPaddle.pos.y-10 && pos.y <= enemyPaddle.pos.y+102)) {
       collisionPos = pos.y - enemyPaddle.pos.y;
       bounceSpeed = setBounceSpeed(); // Set bounce speed based on where the ball touches the paddle (Touching the edges of the paddle will bounce the ball at highest speed
       bounceAngle = map(collisionPos,0,100, PI/4, PI/-4); // Set bounce angle based on where the ball touches the paddle (from 45 to -45 degrees)

@@ -33,16 +33,16 @@ class Paddle {
   
   // Enemy AI routine
   void moveAI() {
-    if (pong.pos.y >= pos.y+60 && pong.pos.y <= pos.y+65) { // Stop moving if the ball is within the paddle zone.
+    if (pong.pos.y >= pos.y+45 && pong.pos.y <= pos.y+60) { // Stop moving if the ball is within the paddle zone.
       vel.y=0;
       isMovingUp=isMovingDown=false;
-    } else if (pong.pos.y <= pos.y && !isMovingDown) { // If the ball is above the paddle then move the paddle UP
-      mentokAtas=false;
-      isMovingDown=true; isMovingUp=false;
-      vel.y = -10;
-    } else if (pong.pos.y > pos.y+110 && !isMovingUp) { // If the ball is below the paddle then move the paddle DOWN
+    } else if (pong.pos.y <= pos.y+10 && !isMovingUp) { // If the ball is above the paddle then move the paddle UP
       mentokBawah=false;
       isMovingDown=false; isMovingUp=true;
+      vel.y = -10;
+    } else if (pong.pos.y > pos.y+80 && !isMovingDown) { // If the ball is below the paddle then move the paddle DOWN
+      mentokAtas=false;
+      isMovingDown=true; isMovingUp=false;
       vel.y = 10;
     }
     
@@ -52,7 +52,7 @@ class Paddle {
   
   // Check paddle boundary so it doesn't go beyond the game window
   void checkBoundary() {
-    if (pos.y <= 1) mentokAtas = true; // Don't move the paddle further up if it reaches the top of the screen
-    else if (pos.y >= height-90) mentokBawah = true; // Don't move the paddle further down if it reaches the bottom of the screen
+    if (pos.y <= 0) mentokAtas = true; // Don't move the paddle further up if it reaches the top of the screen
+    else if (pos.y+90 >= height) mentokBawah = true; // Don't move the paddle further down if it reaches the bottom of the screen
   }
 }
